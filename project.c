@@ -57,6 +57,12 @@ void ALU(unsigned A,unsigned B,char ALUControl,unsigned *ALUresult,char *Zero)
 /* 10 Points */
 int instruction_fetch(unsigned PC,unsigned *Mem,unsigned *instruction)
 {
+  // return 1 if halt condition occurs, hopefully PC conditions are correct
+  if(PC > 65535 | PC & 0x3) 
+    return 1; 
+  // fetch instruction addressed by PC from Mem
+  *instruction = *Mem[ PC >> 2]; // should Mem not have " * "? 
+    return 0; // no halt
 
 }
 
