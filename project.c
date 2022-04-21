@@ -1,3 +1,4 @@
+/* Monica Alvarado -- worked solo :-(, hope this works well*/ 
 #include "spimcore.h"
 
 
