@@ -5,6 +5,30 @@
 /* 10 Points */
 void ALU(unsigned A,unsigned B,char ALUControl,unsigned *ALUresult,char *Zero)
 {
+  switch (ALUControl) // will take in the char of the ALUControl
+  {
+    case 0: *ALUresult = A + B; 
+      break; 
+    case 1: *ALUresult = A - B; 
+      break; 
+    case 2: // could do a different function for this? 
+      if((int)A< (int)B) // will wrk bc A & B are unsigned INTEGERS
+        *ALUresult = 1; 
+      else 
+         *ALUresult = 0; 
+      
+      break; 
+    case 3: 
+      break; 
+    case 4: 
+      break; 
+    case 5: 
+      break; 
+    case 6: 
+      break; 
+    case 7: 
+      break; 
+  }
 
 }
 
