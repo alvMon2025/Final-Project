@@ -5,30 +5,51 @@
 /* 10 Points */
 void ALU(unsigned A,unsigned B,char ALUControl,unsigned *ALUresult,char *Zero)
 {
+  // using a pointer, so need a varialble for ALUresult to actually point too
+  unsigned result; 
+  // this whole switch case implments the operations
   switch (ALUControl) // will take in the char of the ALUControl
   {
-    case 0: *ALUresult = A + B; 
+    case 0: result = A + B; 
       break; 
-    case 1: *ALUresult = A - B; 
+    case 1: result = A - B; 
       break; 
     case 2: // could do a different function for this? 
       if((int)A< (int)B) // will wrk bc A & B are unsigned INTEGERS
-        *ALUresult = 1; 
+        result = 1; 
       else 
-         *ALUresult = 0; 
+         result = 0; 
       
       break; 
     case 3: 
+      if(A < B)
+        result = 1; 
+      else
+        result = 0;
       break; 
     case 4: 
+      result = (A & B); 
       break; 
-    case 5: 
+    case 5: result = (A | B);
       break; 
-    case 6: 
+    case 6: // incorrect, needs to merge 16? 
+      if((int)A < 0) 
+        result = 1; 
+      else
+        result = 0;
       break; 
     case 7: 
+      result = ~A;// if not case A
       break; 
   }
+  *ALUresult = result; // now we can point the pointer to the variable result
+  // ^^ outputs result(Z) to ALUtresult
+  // assign zero to one if the reuslt is 0, or assign 0
+  
+  if(result ==0)
+    *Zero = 1; // hope this is okay to point pointer to direct value, been a while
+  else
+    *Zero = 0; 
 
 }
 
