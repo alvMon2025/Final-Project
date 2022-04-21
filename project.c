@@ -87,6 +87,55 @@ void instruction_partition(unsigned instruction, unsigned *op, unsigned *r1,unsi
 /* 15 Points */
 int instruction_decode(unsigned op,struct_controls *controls)
 {
+  switch(op)
+  {
+      case 0x00: 
+        controls -> RegDst = 1; 
+        controls -> Jump = 0; 
+       `controls -> Branch = 0; 
+        controls -> MemRead= 0; 
+        controls -> MemtoReg = 0;
+        controls -> ALUOp = 7; 
+        controls -> MemWrite = 0; 
+       controls -> ALUSrc = 0; 
+       controls -> RegWrite = 1; 
+        break; 
+      case 0x0d:  // OR immediate field
+        controls -> RegDst = 0; 
+        controls -> Jump = 0; 
+       `controls -> Branch = 0; 
+        controls -> MemRead= 0; 
+        controls -> MemtoReg = 0;
+        controls -> ALUOp = 5; 
+        controls -> MemWrite = 0; 
+       controls -> ALUSrc = 1; 
+       controls -> RegWrite = 1; 
+        break; 
+      case 0x23: 
+        controls -> RegDst = 0; 
+        controls -> Jump = 0; 
+       `controls -> Branch = 0; 
+        controls -> MemRead= 1; 
+        controls -> MemtoReg = 1;
+        controls -> ALUOp = 0; 
+        controls -> MemWrite = 0; 
+       controls -> ALUSrc = 1; 
+       controls -> RegWrite = 1; 
+        break; 
+      case 0x2b: // set less than
+        controls -> RegDst = 1; 
+        controls -> Jump = 0; 
+       `controls -> Branch = 0; 
+        controls -> MemRead= 0; 
+        controls -> MemtoReg = 0;
+        controls -> ALUOp = 7; 
+        controls -> MemWrite = 0; 
+       controls -> ALUSrc = 0; 
+       controls -> RegWrite = 1; 
+        break; 
+    default: return 1; // 1 will halt
+  }
+  return 0; // no halt
 
 }
 
